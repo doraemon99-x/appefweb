@@ -12,6 +12,7 @@ app.use(express.json());
 
 const url = 'https://aio.mrwixxsid.com/wp-json/aio-dl/video-data/';
 const token = '60071662612d30d0d16459628e2c133ca4388b9f2308bb83ff240f8732255ace';
+const refererUrl = 'https://aio.mrwixxsid.com/facebook-video-downloader/';
 
 // Fungsi untuk mendapatkan hash dari URL
 function getHashFromUrl(url) {
@@ -30,7 +31,10 @@ app.post('/download', async (req, res) => {
 
     try {
         const response = await axios.post(url, formData, {
-            headers: formData.getHeaders(),
+            headers: {
+                ...formData.getHeaders(),
+                'Referer': refererUrl
+            }
         });
 
         const medias = response.data.medias;
