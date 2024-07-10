@@ -33,7 +33,8 @@ app.post('/download', async (req, res) => {
         const response = await axios.post(url, formData, {
             headers: {
                 ...formData.getHeaders(),
-                'Referer': refererUrl
+                'Referer': refererUrl,
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
             }
         });
 
